@@ -2,7 +2,7 @@ package question1;
 
 import java.util.Scanner;
 
-/*
+/* 題目
  * 寫一個方法（函數） boolean isPrime(int n)，接受一個整數n為參數，若n 為質數
  * ，則傳回true；若不為質數則傳回false。質數的判斷方法如下：
  * 如果n不是質數，那麼n一定有一個小於等於√n的因數。換句話說，如果n沒有任何小於等於√n的因數，那麼必定是質數。
@@ -11,27 +11,16 @@ import java.util.Scanner;
  * 只要全部的最大公因數都為1，那麼，n 就是質數。
  */
 public class Q1 {
-	public static boolean isPrime(int n) {
-		int tmp = (int) Math.sqrt(n);
-		int count = 0;
-		for (int i = tmp; i > 1; i--) {
-			if (gcd(n, i) == 0) {
-				System.out.println(i);
-				count++;
-				//break;
-			} else {
 
+	public static boolean isPrime(int n) {
+		int tmp = (int) Math.sqrt(n);// 求√n並設為tmp
+		for (int i = tmp; i > 1; i--) {
+			if (n % i == 0) {// 如果n有小於他的因數的話會餘數呈現零
+				return false;// 返回false值，他不是質數，並結束方法
+			} else {
 			}
 		}
-		if (count != 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	public static int gcd(int m, int n) {
-		return n == 0 ? m : gcd(n, m % n);
+		return true;// 沒有小逾n的因數，回傳true
 	}
 
 	public static void main(String[] args) {
